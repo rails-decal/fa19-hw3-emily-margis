@@ -1,0 +1,27 @@
+<% if @cities.empty?%>
+	<p> To create a new city, go to /cites/new and enter the fields and click save</p>
+
+<% elsif not @name.nil? and @cities.key?(@name.to_sym)%>
+	<h1> <%= @city.name %></h1>
+	<% if not @city.population.nil?%>
+		<h2> POPULATION </h2>
+		<p><%= @city.population%></p>
+	<% end %>
+	<% if not @city.landmark.nil?%>
+		<h2> LANDMARK</h2>
+		<p><%= @city.landmark %></p>
+	<% end %>
+
+<% else%>
+	<% City.all.each_value do |c| %>
+			<h1> <%= c.name %></h1>
+			<% if not c.population.nil? %>
+				<h2> POPULATION</h2>
+				<p> <%=c.population %></p>
+			
+			
+				<h2> LANDMARK</h2>
+				<p> <%=c.landmark%> </p>
+		<% end %>
+	<% end %>
+<% end %>

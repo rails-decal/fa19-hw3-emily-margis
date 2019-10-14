@@ -1,1 +1,13 @@
-<!-- Your code here -->
+<%= form_with local: true, method: "get" do |form| %>
+    <%= form.text_field :city %>
+    <%= form.submit %>
+<% end %>
+<%= City.all.each_value do |c| %>
+    <% if not c.nil? %>
+	<h1> <%= c.name %></h1>
+	<p>
+		It's <%= c.weather[:temperature] %>°F
+		and it looks like <%= c.weather[:description] %>
+	</p>
+<% end %>
+<% end %>
